@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+
+/*
+ * The editor package ships Tailwind utility classes in its source; consumers
+ * must point Tailwind at it so those classes are generated.
+ */
+@source '../../src';
+
+/*
+ * Semantic theme tokens the editor expects (see README "Notes"). One dark
+ * theme — this is a video editor, it lives in the dark.
+ *
+ * Every token is defined as a plain CSS variable (the editor reads several
+ * with raw `var(--…)` / `color-mix(…)`), then mapped into Tailwind color
+ * tokens via `@theme inline` so classes like `bg-editor-chrome` and
+ * `ring-clip-video-ring` resolve.
+ */
+:root {
+  color-scheme: dark;
+
+  /* ── shadcn-style semantic palette ── */
+  --background: oklch(0.16 0.006 260);
+  --foreground: oklch(0.93 0.005 260);
+  --card: oklch(0.19 0.006 260);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.21 0.007 260);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.72 0.15 250);
+  --primary-foreground: oklch(0.15 0.02 255);
+  --secondary: oklch(0.26 0.008 260);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.24 0.007 260);
+  --muted-foreground: oklch(0.64 0.012 260);
+  --accent: oklch(0.28 0.01 260);
+  --accent-foreground: oklch(0.96 0.005 260);
+  --destructive: oklch(0.62 0.19 25);
+  --destructive-foreground: oklch(0.97 0.01 25);
+  --border: oklch(0.28 0.008 260);
+  --input: oklch(0.3 0.008 260);
+  --ring: oklch(0.72 0.15 250);
+
+  /* ── editor chrome ── */
+  --editor-stage: oklch(0.12 0.005 260);
+  --editor-chrome: oklch(0.185 0.006 260);
+  --editor-chrome-soft: oklch(0.215 0.007 260);
+  --editor-chrome-strong: oklch(0.25 0.008 260);
+  --editor-border: oklch(0.27 0.008 260);
+  --editor-on-chrome: oklch(0.9 0.005 260);
+  --editor-on-chrome-muted: oklch(0.6 0.012 260);
+
+  /* Consumed as hsl(var(--accent-teal)) — must stay an HSL triple. */
+  --accent-teal: 174 62% 47%;
+
+  /* ── timeline clip colors, per media kind ── */
+  --clip-video-bg: oklch(0.42 0.08 252);
+  --clip-video-bg-selected: oklch(0.52 0.11 252);
+  --clip-video-fg: oklch(0.97 0.01 252);
+  --clip-video-ring: oklch(0.75 0.12 252);
+
+  --clip-image-bg: oklch(0.42 0.09 305);
+  --clip-image-bg-selected: oklch(0.52 0.12 305);
+  --clip-image-fg: oklch(0.97 0.01 305);
+  --clip-image-ring: oklch(0.74 0.12 305);
+
+  --clip-audio-bg: oklch(0.42 0.07 155);
+  --clip-audio-bg-selected: oklch(0.52 0.1 155);
+  --clip-audio-fg: oklch(0.97 0.01 155);
+  --clip-audio-ring: oklch(0.74 0.11 155);
+
+  --clip-clipaudio-bg: oklch(0.42 0.06 195);
+  --clip-clipaudio-bg-selected: oklch(0.52 0.09 195);
+  --clip-clipaudio-fg: oklch(0.97 0.01 195);
+  --clip-clipaudio-ring: oklch(0.74 0.1 195);
+
+  --clip-caption-bg: oklch(0.47 0.08 80);
+  --clip-caption-bg-selected: oklch(0.57 0.1 80);
+  --clip-caption-fg: oklch(0.98 0.02 85);
+  --clip-caption-ring: oklch(0.8 0.11 80);
+
+  /* ── stacking contexts ── */
+  --z-overlay: 40;
+  --z-modal: 50;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-editor-stage: var(--editor-stage);
+  --color-editor-chrome: var(--editor-chrome);
+  --color-editor-chrome-soft: var(--editor-chrome-soft);
+  --color-editor-chrome-strong: var(--editor-chrome-strong);
+  --color-editor-border: var(--editor-border);
+  --color-editor-on-chrome: var(--editor-on-chrome);
+  --color-editor-on-chrome-muted: var(--editor-on-chrome-muted);
+
+  --color-clip-video-bg: var(--clip-video-bg);
+  --color-clip-video-bg-selected: var(--clip-video-bg-selected);
+  --color-clip-video-fg: var(--clip-video-fg);
+  --color-clip-video-ring: var(--clip-video-ring);
+  --color-clip-image-bg: var(--clip-image-bg);
+  --color-clip-image-bg-selected: var(--clip-image-bg-selected);
+  --color-clip-image-fg: var(--clip-image-fg);
+  --color-clip-image-ring: var(--clip-image-ring);
+  --color-clip-audio-bg: var(--clip-audio-bg);
+  --color-clip-audio-bg-selected: var(--clip-audio-bg-selected);
+  --color-clip-audio-fg: var(--clip-audio-fg);
+  --color-clip-audio-ring: var(--clip-audio-ring);
+  --color-clip-clipaudio-bg: var(--clip-clipaudio-bg);
+  --color-clip-clipaudio-bg-selected: var(--clip-clipaudio-bg-selected);
+  --color-clip-clipaudio-fg: var(--clip-clipaudio-fg);
+  --color-clip-clipaudio-ring: var(--clip-clipaudio-ring);
+  --color-clip-caption-bg: var(--clip-caption-bg);
+  --color-clip-caption-bg-selected: var(--clip-caption-bg-selected);
+  --color-clip-caption-fg: var(--clip-caption-fg);
+  --color-clip-caption-ring: var(--clip-caption-ring);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

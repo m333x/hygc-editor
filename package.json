@@ -42,11 +42,16 @@
   "publishConfig": {
     "access": "public"
   },
+  "workspaces": [
+    "demo"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "demo:dev": "npm run dev -w demo",
+    "demo:build": "npm run build -w demo"
   },
   "peerDependencies": {
     "@dnd-kit/core": "^6",
