@@ -117,7 +117,7 @@ export function buildSeedState(): { state: SerializedEditorState; title: string 
   captionTrack.clips = [
     captionClip('Cut, trim & stack — right in your browser', 500, 4000),
     captionClip('Keyframes, transitions & effects', 6500, 4000),
-    captionClip('Captions with word-level highlight', 12500, 4000),
+    captionClip('Styled, animated captions', 12500, 4000),
     captionClip('Exports locally with WebCodecs', 18200, 3400),
   ]
 

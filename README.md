@@ -21,8 +21,8 @@ entirely in your browser: no signup, no backend, nothing uploaded anywhere.
   opacity, caption size/offset) with easing, edited from the inspector.
 - **Transitions** — fade, slide, pan, blur, zoom, wipe, spin, and more, with
   paired crossfades and adjustable motion blur.
-- **Captions** — global and per-clip styling, word-level highlight,
-  in/out animations; AI transcription plugs in through the host.
+- **Captions** — global and per-clip styling with in/out animations; AI
+  transcription plugs in through the host.
 - **Audio** — waveforms, fade envelopes, auto-ducking, in-editor voiceover
   recording.
 - **Effects** — non-destructive, reorderable per-clip effect stacks.
