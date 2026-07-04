@@ -1,0 +1,99 @@
+{
+  "name": "@hygc/editor",
+  "version": "0.1.0",
+  "description": "Browser NLE video editor — Remotion preview, WebCodecs export (H.264/H.265/AV1), multi-track timeline, captions, transitions, voiceover. Host-adapter persistence.",
+  "keywords": [
+    "video-editor",
+    "nle",
+    "remotion",
+    "webcodecs",
+    "timeline",
+    "react",
+    "video"
+  ],
+  "license": "AGPL-3.0-only",
+  "author": "HyGC",
+  "homepage": "https://github.com/m333x/hygc-editor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m333x/hygc-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/m333x/hygc-editor/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./locales/*": "./src/locales/*"
+  },
+  "files": [
+    "dist",
+    "src/locales",
+    "README.md",
+    "LICENSE",
+    "COMMERCIAL-LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "@dnd-kit/core": "^6",
+    "@dnd-kit/sortable": "^10",
+    "@dnd-kit/utilities": "^3",
+    "@remotion/media": "4.0.475",
+    "@remotion/player": "4.0.475",
+    "@remotion/web-renderer": "4.0.475",
+    "class-variance-authority": "^0.7",
+    "clsx": "^2",
+    "lucide-react": ">=0.500",
+    "mediabunny": "^1",
+    "radix-ui": "^1.4",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-i18next": ">=15",
+    "react-resizable-panels": "^4",
+    "react-router": "^7",
+    "remotion": "4.0.475",
+    "sonner": "^2",
+    "tailwind-merge": "^3",
+    "zustand": "^5"
+  },
+  "devDependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@remotion/media": "4.0.475",
+    "@remotion/player": "4.0.475",
+    "@remotion/web-renderer": "4.0.475",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.563.0",
+    "mediabunny": "^1.45.0",
+    "radix-ui": "^1.4.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.4",
+    "react-resizable-panels": "^4.6.4",
+    "react-router": "^7.17.0",
+    "remotion": "4.0.475",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.4.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.8",
+    "zustand": "^5.0.11"
+  }
+}

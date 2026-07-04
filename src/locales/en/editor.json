@@ -1,0 +1,175 @@
+{
+  "projects": {
+    "cta": {
+      "newProject": "New project"
+    },
+    "stats": {
+      "count_one": "{{count}} project",
+      "count_other": "{{count}} projects"
+    },
+    "header": {
+      "searchPlaceholder": "Search projects…",
+      "sortLabel": "Sort",
+      "sort": {
+        "modifiedDesc": "Edited, newest first",
+        "modifiedAsc": "Edited, oldest first",
+        "createdDesc": "Created, newest first",
+        "titleAsc": "Title, A to Z"
+      },
+      "emptyResults": "No projects match this search.",
+      "showWelcome": "Show getting started"
+    },
+    "card": {
+      "open": "Open",
+      "openLabel": "Open project: {{title}}",
+      "rename": "Rename",
+      "renameTooltip": "Rename · F2",
+      "duplicate": "Duplicate",
+      "delete": "Delete",
+      "modified": "Edited {{value}}",
+      "actionsLabel": "Project actions",
+      "titleLabel": "Rename: {{title}}"
+    },
+    "welcome": {
+      "title": "Polish your ad. Frame by frame.",
+      "subtitle": "Trim clips, layer captions, swap audio, then export 9:16 for TikTok, Reels, and Shorts — without leaving the browser.",
+      "step1Caption": "Trim & arrange",
+      "step2Caption": "Caption styles",
+      "step3Caption": "Export 9:16",
+      "cta": "Start a blank timeline",
+      "help": "How the editor works",
+      "dismiss": "Hide this welcome"
+    },
+    "empty": {
+      "title": "No projects yet",
+      "description": "Start from a blank timeline, or open the editor from any ad once your video is ready.",
+      "cta": "New project"
+    },
+    "errors": {
+      "create": "Could not create project.",
+      "duplicate": "Duplicate failed.",
+      "openFromAd": "Could not open editor for this ad.",
+      "rename": "Could not rename project."
+    },
+    "openingFromAd": "Opening editor for your ad…",
+    "deleteConfirm": "Delete this project? This cannot be undone."
+  },
+  "toolbar": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "select": "Select",
+    "slice": "Slice",
+    "snap": "Snap",
+    "snapEnabled": "Snap to edges enabled",
+    "snapDisabled": "Snap to edges disabled",
+    "zoomFit": "Zoom to fit",
+    "export": "Export"
+  },
+  "timeline": {
+    "addTrack": "Add Track",
+    "addElement": "Add Element",
+    "trackTypes": {
+      "video": "Video",
+      "audio": "Audio",
+      "caption": "Caption"
+    },
+    "defaultTracks": {
+      "captions": "Captions",
+      "bRoll": "B-Roll",
+      "voiceover": "Voiceover",
+      "music": "Music"
+    },
+    "deleteTrack": "Delete track",
+    "deleteTrackConfirm": "This track has {{count}} clip(s). Delete anyway?",
+    "muteTrack": "Mute track",
+    "unmuteTrack": "Unmute track",
+    "lockTrack": "Lock track",
+    "unlockTrack": "Unlock track"
+  },
+  "inspector": {
+    "title": "Inspector",
+    "noSelection": "Select a clip to edit its properties",
+    "transform": {
+      "title": "Transform",
+      "zoom": "Zoom",
+      "positionX": "Position X",
+      "positionY": "Position Y",
+      "rotation": "Rotation",
+      "flipH": "Flip horizontal",
+      "flipV": "Flip vertical"
+    },
+    "crop": {
+      "title": "Crop",
+      "top": "Top",
+      "right": "Right",
+      "bottom": "Bottom",
+      "left": "Left"
+    },
+    "speed": {
+      "title": "Speed",
+      "multiplier": "{{value}}x",
+      "freezeFrame": "Freeze frame",
+      "custom": "Custom"
+    }
+  },
+  "assets": {
+    "title": "Assets",
+    "tabs": {
+      "myAssets": "My Assets",
+      "aiGenerate": "AI Generate",
+      "upload": "Upload"
+    },
+    "dropzone": "Drag and drop files here, or click to browse",
+    "addToTrack": "Add to Track"
+  },
+  "captions": {
+    "title": "Captions",
+    "generate": "Generate Captions",
+    "generating": "Generating captions...",
+    "style": "Caption Style",
+    "presets": {
+      "boldImpact": "Bold Impact",
+      "modernSans": "Modern Sans",
+      "minimal": "Minimal",
+      "neon": "Neon"
+    },
+    "settings": {
+      "font": "Font",
+      "fontSize": "Font Size",
+      "color": "Color",
+      "position": "Position",
+      "animationIn": "In Animation",
+      "animationOut": "Out Animation",
+      "effects": "Effects",
+      "wordHighlight": "Word highlight"
+    }
+  },
+  "export": {
+    "title": "Export Video",
+    "resolution": "Resolution",
+    "resolution720": "720p (720×1280)",
+    "resolution1080": "1080p (1080×1920)",
+    "creditCost": "Credit cost: {{cost}}",
+    "start": "Start Export",
+    "progress": "Rendering... {{percent}}%",
+    "complete": "Export complete!",
+    "download": "Download MP4",
+    "expiresIn": "Available for {{days}} days"
+  },
+  "playback": {
+    "play": "Play",
+    "pause": "Pause",
+    "loop": "Loop"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "playPause": "Play / Pause",
+    "undo": "Undo",
+    "redo": "Redo",
+    "delete": "Delete selected",
+    "frameForward": "Next frame",
+    "frameBackward": "Previous frame",
+    "copy": "Copy",
+    "paste": "Paste"
+  }
+}
