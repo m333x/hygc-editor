@@ -1,7 +1,10 @@
 # @hygc/editor
-
 [![CI](https://github.com/m333x/hygc-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/m333x/hygc-editor/actions/workflows/ci.yml)
 [![License: AGPL-3.0 / Commercial](https://img.shields.io/badge/license-AGPL--3.0%20%2F%20commercial-blue)](./LICENSE)
+
+<p align="center">
+<img align="center" width="128" height="128" alt="hygc" src="https://github.com/user-attachments/assets/6dd364ad-8214-4f26-865f-c69438ad9596" />
+</p>
 
 A browser NLE video editor as an embeddable React package — Remotion-powered
 preview, client-side WebCodecs export, and a single host interface that wires
