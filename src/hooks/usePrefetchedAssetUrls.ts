@@ -68,6 +68,63 @@ function touchBlobUrl(assetId: string): string | undefined {
   return blobUrl
 }
 
+/**
+ * Single-flight acquisition maps. Multiple hook instances run concurrently
+ * over the same assets (EditorPage mounts a desktop AND a mobile
+ * PreviewCanvas; only CSS hides one). Without deduplication both instances
+ * miss the memory cache together, each creates its own object URL, and
+ * `rememberBlobUrl` revokes the earlier one — which the losing instance has
+ * already published to its Player, leaving playback stuck refetching a dead
+ * blob URL. Sharing one in-flight promise per asset guarantees every consumer
+ * receives the same (live) URL.
+ */
+const inflightHydrations = new Map<string, Promise<string | null>>()
+const inflightDownloads = new Map<string, Promise<string | null>>()
+
+function singleFlight(
+  map: Map<string, Promise<string | null>>,
+  assetId: string,
+  run: () => Promise<string | null>,
+): Promise<string | null> {
+  let pending = map.get(assetId)
+  if (!pending) {
+    pending = run()
+      .catch(() => null)
+      .finally(() => map.delete(assetId))
+    map.set(assetId, pending)
+  }
+  return pending
+}
+
+/** Memory cache → IndexedDB. Returns null when the asset isn't cached yet. */
+function hydrateBlobUrl(assetId: string): Promise<string | null> {
+  return singleFlight(inflightHydrations, assetId, async () => {
+    const memHit = touchBlobUrl(assetId)
+    if (memHit) return memHit
+    const persisted = await getCachedAssetBlob(assetId)
+    if (!persisted) return null
+    const blobUrl = URL.createObjectURL(persisted.blob)
+    rememberBlobUrl(assetId, blobUrl)
+    return blobUrl
+  })
+}
+
+/** Network download → object URL + IndexedDB write-through. */
+function downloadBlobUrl(assetId: string, url: string): Promise<string | null> {
+  return singleFlight(inflightDownloads, assetId, async () => {
+    // A concurrent consumer may have finished while we queued.
+    const memHit = touchBlobUrl(assetId)
+    if (memHit) return memHit
+    const res = await fetch(url, { mode: 'cors' })
+    if (!res.ok) return null
+    const blob = await res.blob()
+    const blobUrl = URL.createObjectURL(blob)
+    rememberBlobUrl(assetId, blobUrl)
+    void putCachedAssetBlob(assetId, blob)
+    return blobUrl
+  })
+}
+
 export interface PrefetchProgress {
   /** Total number of assets to prefetch. */
   total: number
@@ -162,22 +219,14 @@ export function usePrefetchedAssetUrls(
 
       // ── Pass 1: instant hits (in-memory + IndexedDB) ──────────────────────
       // Network-bound items get queued for pass 2 so they share the
-      // concurrency-limited downloader.
+      // concurrency-limited downloader. Acquisition is single-flight per
+      // asset, so concurrent hook instances all resolve to the same URL.
       const needsNetwork: [string, string][] = []
       for (const [assetId, url] of orderedEntries) {
         if (cancelled) return
-        const memHit = touchBlobUrl(assetId)
-        if (memHit) {
-          recordHit(assetId, memHit)
-          loaded++
-          reportProgress()
-          continue
-        }
-        const persisted = await getCachedAssetBlob(assetId)
+        const blobUrl = await hydrateBlobUrl(assetId)
         if (cancelled) return
-        if (persisted) {
-          const blobUrl = URL.createObjectURL(persisted.blob)
-          rememberBlobUrl(assetId, blobUrl)
+        if (blobUrl) {
           recordHit(assetId, blobUrl)
           loaded++
           reportProgress()
@@ -197,19 +246,9 @@ export function usePrefetchedAssetUrls(
           if (!entry) return
           const [assetId, url] = entry
 
-          try {
-            const res = await fetch(url, { mode: 'cors' })
-            if (res.ok && !cancelled) {
-              const blob = await res.blob()
-              if (!cancelled) {
-                const blobUrl = URL.createObjectURL(blob)
-                rememberBlobUrl(assetId, blobUrl)
-                recordHit(assetId, blobUrl)
-                void putCachedAssetBlob(assetId, blob)
-              }
-            }
-          } catch {
-            // Keep original URL fallback below.
+          const blobUrl = await downloadBlobUrl(assetId, url)
+          if (blobUrl && !cancelled) {
+            recordHit(assetId, blobUrl)
           }
 
           loaded++
